@@ -20,19 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Cria a lista de participantes como uma lista não ordenada
-        let participantsHtml = "";
-        if (details.participants.length > 0) {
-          participantsHtml = `
+        // Cria a lista de participantes (se houver)
+        let participantsHTML = "";
+        if (details.participants && details.participants.length > 0) {
+          participantsHTML = `
             <div class="participants-section">
               <strong>Participants:</strong>
               <ul class="participants-list">
-                ${details.participants.map(email => `<li>${email}</li>`).join("")}
+                ${details.participants.map(p => `<li>${p}</li>`).join("")}
               </ul>
             </div>
           `;
         } else {
-          participantsHtml = `
+          participantsHTML = `
             <div class="participants-section">
               <strong>Participants:</strong>
               <p class="no-participants">No participants yet.</p>
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
-          ${participantsHtml}
+          ${participantsHTML}
         `;
 
         activitiesList.appendChild(activityCard);
